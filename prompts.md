@@ -34,3 +34,9 @@ Use express instead of fastify for the server. Ensure requests and responses wor
 
 ## 12 (context `/htmx-version`)
 Build phase 3 of the development roadmap in README.md. Ensure the hx-vals approach of sending data is retained. Make the visual feedback immersive. 
+
+## 13 (context `/htmx-version`)
+Remove the Score section from index.html and any associated logic - focus more on the status bars. When the timer for the current situation runs out this should impact the childs status untill an option is selected. Turn the timer into a progress bar that changes colour as it depletes and spans the top of the current situation card. Only reveal the parenting tip after half of the time has passed. After selecting an option the current situation section should be replaced with section for the next scenario. Extract the JavaScript in index.html into a seperate file.
+
+## 14 (context `/htmx-version`)
+Almost there. Integrate the Parenting Tip into the card for the Current Situation. When an option is selected replace the whole Current Situation card with information about the outcome on the childs social, emotional, and learning needs, and a button to load the next scenario. When the timer for the current situation runs out change the background of the timer bar to red, with a short notice in the center of the bar explaining the childs patience is lowering. Consider revising or removing the '/timeout' endpoint on the server if needed.

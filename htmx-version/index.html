@@ -15,25 +15,15 @@
   <div class="max-w-3xl mx-auto px-4">
     <header class="text-center mb-8">
       <h1 class="text-4xl font-bold text-gray-800 mb-4 transition-all hover:scale-105">Parenting Moments</h1>
-      
-      <!-- Enhanced Score Display with Animation -->
-      <div class="bg-white rounded-lg shadow-lg p-4 mb-4 transform transition-all duration-300 hover:scale-105">
-        <div class="relative">
-          <p class="text-xl font-semibold text-gray-700">Score: 
-            <span id="score" class="transition-all duration-300">0</span>
-          </p>
-          <div id="score-popup" class="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 transition-all duration-300"></div>
-        </div>
-      </div>
 
-      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-4">
+      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-6 transform transition-all duration-300 hover:scale-105">
         <h2 class="text-xl font-semibold text-blue-800 mb-2">Child Development Stage: Toddler (2-3 years)</h2>
         <p class="text-blue-600">At this age, children are developing independence and may test boundaries frequently.</p>
       </div>
-
-      <!-- Enhanced Meters with Animations -->
-      <div class="grid grid-cols-2 gap-4 mb-4">
-        <div class="bg-white rounded-lg p-4 shadow-lg">
+      
+      <!-- Status Meters -->
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="bg-white rounded-lg p-4 shadow-lg transform transition-all duration-300 hover:scale-105">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-medium text-gray-600">Child's Mood</h3>
             <span id="mood-emoji" class="text-2xl transition-all duration-300">😊</span>
@@ -45,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-lg p-4 shadow-lg">
+        <div class="bg-white rounded-lg p-4 shadow-lg transform transition-all duration-300 hover:scale-105">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-medium text-gray-600">Parent's Patience</h3>
             <span id="patience-emoji" class="text-2xl transition-all duration-300">🧘</span>
@@ -61,57 +51,52 @@
     </header>
 
     <main>
-      <div id="scenario" class="bg-white/90 backdrop-blur-md rounded-lg shadow-lg p-6 mb-6 transform transition-all duration-300">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-2xl font-semibold">Current Situation</h3>
-          <div class="flex items-center space-x-2">
-            <div id="timer-ring" class="w-12 h-12 rounded-full border-4 border-red-500 flex items-center justify-center">
-              <div id="timer" 
-                   class="text-xl font-bold text-red-500"
-                   hx-swap-oob="true">
-                10
-              </div>
-            </div>
+      <div id="scenario" class="bg-white/90 backdrop-blur-md rounded-lg shadow-lg mb-6 transform transition-all duration-300">
+        <!-- Timer Progress Bar -->
+        <div class="relative h-4 w-full rounded-t-lg overflow-hidden bg-gray-200">
+          <div id="timer-bar" class="h-full bg-green-500 transition-all duration-1000" style="width: 100%"></div>
+          <div id="timeout-notice" class="text-red-600 absolute inset-0 flex items-center justify-center text-xs text-white font-medium opacity-0 transition-opacity duration-300">
+            Child's patience lowering...
           </div>
         </div>
         
-        <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6 transform transition-all duration-300 hover:bg-blue-100">
-          Your toddler refuses to put on their shoes when you're running late for an appointment.
-        </p>
-        
-        <div class="space-y-3">
-          <button 
-              hx-post="/make-choice" 
-              hx-target="#outcome"
-              hx-vals='{"value": "1"}'
-              class="btn-primary w-full text-left">
-            Get down to their level and calmly explain why we need to wear shoes
-          </button>
-          <button 
-              hx-post="/make-choice" 
-              hx-target="#outcome"
-              hx-vals='{"value": 2}'
-              class="btn-primary w-full text-left">
-            Try to make it into a fun game
-          </button>
-          <button 
-              hx-post="/make-choice" 
-              hx-target="#outcome"
-              hx-vals='{"value": 3}'
-              class="btn-primary w-full text-left">
-            Put the shoes on for them while they resist
-          </button>
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold mb-4">Current Situation</h3>
+          
+          <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6 transform transition-all duration-300 hover:bg-blue-100">
+            Your toddler refuses to put on their shoes when you're running late for an appointment.
+          </p>
+          
+          <div class="space-y-3 mb-6">
+            <button 
+                hx-post="/make-choice" 
+                hx-target="#scenario"
+                hx-vals='{"value": "1"}'
+                class="w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md transform transition-all duration-200 hover:scale-102 hover:shadow-lg active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              Get down to their level and calmly explain why we need to wear shoes
+            </button>
+            <button 
+                hx-post="/make-choice" 
+                hx-target="#scenario"
+                hx-vals='{"value": 2}'
+                class="w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md transform transition-all duration-200 hover:scale-102 hover:shadow-lg active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              Try to make it into a fun game
+            </button>
+            <button 
+                hx-post="/make-choice" 
+                hx-target="#scenario"
+                hx-vals='{"value": 3}'
+                class="w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md transform transition-all duration-200 hover:scale-102 hover:shadow-lg active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              Put the shoes on for them while they resist
+            </button>
+          </div>
+
+          <!-- Integrated Parenting Tip -->
+          <div id="parenting-tip" class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400 transform transition-all duration-500 opacity-0">
+            <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
+            <p class="text-yellow-700">Toddlers often seek independence and control. Giving them choices within acceptable boundaries can help reduce power struggles.</p>
+          </div>
         </div>
-      </div>
-
-      <div id="outcome" class="mb-6">
-        <!-- Outcome will be displayed here -->
-      </div>
-
-      <div class="bg-yellow-50/90 backdrop-blur-sm rounded-lg p-4 border-l-4 border-yellow-400">
-        <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
-        <p class="text-yellow-700">Toddlers often seek independence and control. Giving them choices within acceptable
-          boundaries can help reduce power struggles.</p>
       </div>
     </main>
   </div>
@@ -122,99 +107,8 @@
   <audio id="warningSound" src="/public/sounds/warning.mp3" preload="auto"></audio>
   <audio id="timeoutSound" src="/public/sounds/timeout.mp3" preload="auto"></audio>
 
-  <script>
-    // Enhanced timer functionality with visual and audio feedback
-    function startTimer(duration) {
-      let timeLeft = duration;
-      const timerElement = document.getElementById('timer');
-      const timerRing = document.getElementById('timer-ring');
-      const tickSound = document.getElementById('tickSound');
-      
-      const updateTimerVisuals = (time) => {
-        const progress = (time / duration) * 100;
-        timerRing.style.borderColor = `hsl(${progress}, 70%, 50%)`;
-        timerRing.style.transform = `rotate(${360 - (progress * 3.6)}deg)`;
-        
-        if (time <= 3) {
-          tickSound.play();
-          timerElement.classList.add('animate-pulse');
-        }
-      };
-
-      const timerId = setInterval(() => {
-        timeLeft--;
-        timerElement.textContent = timeLeft;
-        updateTimerVisuals(timeLeft);
-        
-        if (timeLeft <= 0) {
-          clearInterval(timerId);
-          document.getElementById('timeoutSound').play();
-          htmx.trigger('#scenario', 'timeoutReached');
-        }
-      }, 1000);
-
-      document.querySelector('#scenario').dataset.timerId = timerId;
-    }
-
-    // Update emoji based on meter values
-    function updateEmoji(meterValue, type) {
-      const emojis = type === 'mood' 
-        ? ['😢', '😕', '😐', '🙂', '😊']
-        : ['😫', '😓', '😌', '🧘', '🧘‍♂️'];
-      
-      const index = Math.floor((meterValue / 100) * (emojis.length - 1));
-      document.getElementById(`${type}-emoji`).textContent = emojis[index];
-    }
-
-    // Score animation
-    function animateScore(oldScore, newScore) {
-      const scoreElement = document.getElementById('score');
-      const popup = document.getElementById('score-popup');
-      const diff = newScore - oldScore;
-      
-      popup.textContent = diff > 0 ? `+${diff}` : diff;
-      popup.style.color = diff > 0 ? '#22c55e' : '#ef4444';
-      popup.style.opacity = '1';
-      popup.style.transform = 'translate(-50%, -20px)';
-      
-      setTimeout(() => {
-        popup.style.opacity = '0';
-        popup.style.transform = 'translate(-50%, -30px)';
-      }, 1000);
-
-      // Animate score counting up/down
-      const duration = 1000;
-      const steps = 20;
-      const increment = (newScore - oldScore) / steps;
-      let current = oldScore;
-      let step = 0;
-
-      const animation = setInterval(() => {
-        step++;
-        current += increment;
-        scoreElement.textContent = Math.round(current);
-        
-        if (step >= steps) {
-          clearInterval(animation);
-          scoreElement.textContent = newScore;
-        }
-      }, duration / steps);
-    }
-
-    // HTMX event handlers
-    htmx.on('htmx:afterSwap', (evt) => {
-      if (evt.detail.target.id === 'scenario') {
-        const oldTimerId = evt.detail.target.dataset.timerId;
-        if (oldTimerId) clearInterval(parseInt(oldTimerId));
-        startTimer(10);
-      }
-    });
-
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      startTimer(10);
-    });
-  </script>
+  <!-- Game logic -->
+  <script src="/public/js/game.js"></script>
 </body>
 
 </html>

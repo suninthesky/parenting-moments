@@ -57,26 +57,37 @@ app.post('/make-choice', (req, res) => {
     
     const meters = updateMeters(choice);
     
+    // Send outcome view first
     res.send(`
-        <div class="bg-white/90 backdrop-blur-md p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105">
-            <div class="relative overflow-hidden rounded-lg mb-4">
-                <div class="absolute inset-0 bg-gradient-to-r ${choice.impact === 'positive' ? 'from-green-500/20 to-blue-500/20' : 'from-red-500/20 to-orange-500/20'} animate-pulse"></div>
-                <p class="text-lg relative z-10 p-4">${choice.outcome}</p>
+        <div class="p-6 outcome-view">
+            <h3 class="text-2xl font-semibold mb-6">Outcome Analysis</h3>
+            
+            <div class="grid gap-6 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">Social Impact</h4>
+                    <p class="text-blue-600">${choice.socialImpact || 'This choice affects how your child learns to interact and communicate with others.'}</p>
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">Emotional Impact</h4>
+                    <p class="text-purple-600">${choice.emotionalImpact || 'This choice influences your child\'s emotional development and self-regulation skills.'}</p>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">Learning Impact</h4>
+                    <p class="text-green-600">${choice.learningImpact || 'This choice shapes how your child approaches problem-solving and learning from experiences.'}</p>
+                </div>
             </div>
-            <div class="bg-blue-50 p-4 rounded-lg mb-4 transform transition-all duration-300 hover:scale-102">
-                <strong class="block text-blue-800 mb-2">Learning Point:</strong>
-                <p class="text-blue-600">${choice.educationalNote}</p>
-            </div>
+
             <button 
                 hx-get="/next-scenario"
                 hx-target="#scenario"
-                class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-md transform transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-98">
-                Next Situation
+                class="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-md transform transition-all duration-200 hover:scale-102 hover:shadow-lg active:scale-98 text-center">
+                Continue to Next Situation
             </button>
         </div>
 
         <!-- Update meters using HTMX's out-of-band swaps -->
-        <div id="score" hx-swap-oob="true">${meters.score}</div>
         <div id="mood-meter" hx-swap-oob="true" 
              class="h-full transition-all duration-500 ease-out"
              style="width: ${meters.mood}%; background: linear-gradient(90deg, #22c55e, #16a34a)">
@@ -89,32 +100,8 @@ app.post('/make-choice', (req, res) => {
         <script hx-swap-oob="true">
             updateEmoji(${meters.mood}, 'mood');
             updateEmoji(${meters.patience}, 'patience');
-            animateScore(${meters.oldScore}, ${meters.score});
             document.getElementById('${choice.impact === 'positive' ? 'successSound' : 'warningSound'}').play();
         </script>
-    `);
-});
-
-// Route to handle timeout
-app.post('/timeout', (req, res) => {
-    const meters = updateMeters({ impact: 'negative' });
-    
-    res.setHeader('Content-Type', 'text/html');
-    res.send(`
-        <div class="bg-red-50 p-6 rounded-lg shadow-md">
-            <p class="text-lg mb-4 text-red-700">Time's up! Quick responses are important in parenting.</p>
-            <button 
-                hx-get="/next-scenario"
-                hx-target="#scenario"
-                class="btn-primary mt-4">
-                Try Next Situation
-            </button>
-        </div>
-
-        <!-- Update meters using HTMX's out-of-band swaps -->
-        <div id="score" hx-swap-oob="true">${meters.score}</div>
-        <div id="mood-meter" hx-swap-oob="true" class="h-full bg-green-500 transition-all duration-500" style="width: ${meters.mood}%"></div>
-        <div id="patience-meter" hx-swap-oob="true" class="h-full bg-blue-500 transition-all duration-500" style="width: ${meters.patience}%"></div>
     `);
 });
 
@@ -123,23 +110,37 @@ app.get('/next-scenario', (req, res) => {
     gameState.currentScenarioIndex = (gameState.currentScenarioIndex + 1) % scenarios.length;
     const scenario = scenarios[gameState.currentScenarioIndex];
     
-    res.setHeader('Content-Type', 'text/html');
     res.send(`
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-2xl font-semibold">Current Situation</h3>
-            <div id="timer" class="text-2xl font-bold text-red-500 animate-pulse-slow">10</div>
+        <div class="relative h-4 w-full rounded-t-lg overflow-hidden bg-gray-200">
+            <div id="timer-bar" class="h-full bg-green-500 transition-all duration-1000" style="width: 100%"></div>
+            <div id="timeout-notice" class="text-red-600 absolute inset-0 flex items-center justify-center text-xs text-white font-medium opacity-0 transition-opacity duration-300">
+                Child's patience lowering...
+            </div>
         </div>
-        <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6">${scenario.situation}</p>
-        <div class="space-y-3">
-            ${scenario.options.map(option => `
-                <button 
-                    hx-post="/make-choice" 
-                    hx-target="#outcome"
-                    hx-vals='{"value": ${option.id}}'
-                    class="btn-primary w-full text-left">
-                    ${option.text}
-                </button>
-            `).join('')}
+        
+        <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-4">Current Situation</h3>
+            
+            <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6 transform transition-all duration-300 hover:bg-blue-100">
+                ${scenario.situation}
+            </p>
+            
+            <div class="space-y-3 mb-6">
+                ${scenario.options.map(option => `
+                    <button 
+                        hx-post="/make-choice" 
+                        hx-target="#scenario"
+                        hx-vals='{"value": "${option.id}"}'
+                        class="w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md transform transition-all duration-200 hover:scale-102 hover:shadow-lg active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        ${option.text}
+                    </button>
+                `).join('')}
+            </div>
+
+            <div id="parenting-tip" class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400 transform transition-all duration-500 opacity-0">
+                <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
+                <p class="text-yellow-700">${scenario.tip}</p>
+            </div>
         </div>
     `);
 });
