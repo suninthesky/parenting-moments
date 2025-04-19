@@ -40,3 +40,6 @@ Remove the Score section from index.html and any associated logic - focus more o
 
 ## 14 (context `/htmx-version`)
 Almost there. Integrate the Parenting Tip into the card for the Current Situation. When an option is selected replace the whole Current Situation card with information about the outcome on the childs social, emotional, and learning needs, and a button to load the next scenario. When the timer for the current situation runs out change the background of the timer bar to red, with a short notice in the center of the bar explaining the childs patience is lowering. Consider revising or removing the '/timeout' endpoint on the server if needed.
+
+## 15 (context `/vue-version`)
+Build phase 1 of the Development Roadmap from the README.md. Make the most of the capabilities of Phaser.js.
