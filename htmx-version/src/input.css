@@ -8,10 +8,31 @@
   }
   
   .btn-primary {
-    @apply btn bg-blue-500 text-white hover:bg-blue-600;
+    @apply px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-md transform transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-98;
   }
   
   .card {
     @apply bg-white rounded-lg shadow-md p-6;
   }
+}
+
+@layer utilities {
+  .scale-102 {
+    transform: scale(1.02);
+  }
+  .scale-98 {
+    transform: scale(0.98);
+  }
+}
+
+/* Custom animations */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  animation: gradient-shift 3s ease infinite;
+  background-size: 200% 200%;
 } 

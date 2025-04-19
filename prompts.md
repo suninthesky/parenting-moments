@@ -31,3 +31,6 @@ Resolve the "Method 'HEAD' already declared for route" FastifyError.
 
 ## 11 (context `/htmx-version`)
 Use express instead of fastify for the server. Ensure requests and responses work with HTMX and its hx-post method sending JSON. Update dependencies accordingly.
+
+## 12 (context `/htmx-version`)
+Build phase 3 of the development roadmap in README.md. Ensure the hx-vals approach of sending data is retained. Make the visual feedback immersive. 
