@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parenting Moments</title>
+    <!-- HTMX for basic interactivity -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Parenting Moments</h1>
+            <div class="child-info">
+                <h2>Child Development Stage: Toddler (2-3 years)</h2>
+                <p class="dev-info">At this age, children are developing independence and may test boundaries frequently.</p>
+            </div>
+        </header>
+
+        <main>
+            <div id="scenario" class="scenario-container">
+                <h3>Current Situation</h3>
+                <p class="scenario-text">
+                    Your toddler refuses to put on their shoes when you're running late for an appointment.
+                </p>
+                
+                <div class="options">
+                    <button 
+                        hx-post="/make-choice" 
+                        hx-target="#outcome"
+                        class="option-button"
+                        value="1">
+                        Get down to their level and calmly explain why we need to wear shoes
+                    </button>
+                    <button 
+                        hx-post="/make-choice" 
+                        hx-target="#outcome"
+                        class="option-button"
+                        value="2">
+                        Try to make it into a fun game
+                    </button>
+                    <button 
+                        hx-post="/make-choice" 
+                        hx-target="#outcome"
+                        class="option-button"
+                        value="3">
+                        Put the shoes on for them while they resist
+                    </button>
+                </div>
+            </div>
+
+            <div id="outcome" class="outcome-container">
+                <!-- Outcome will be displayed here -->
+            </div>
+
+            <div class="educational-tip">
+                <h4>Parenting Tip:</h4>
+                <p>Toddlers often seek independence and control. Giving them choices within acceptable boundaries can help reduce power struggles.</p>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

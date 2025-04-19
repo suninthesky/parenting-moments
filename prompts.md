@@ -16,3 +16,6 @@ Add a development roadmap to simpler-option.md using the HTMX option. Let's make
 
 ## 6
 Incorporate the "Educational Features" into the plan so the game can build parenting confidence and skills.
+
+## 7
+Build Phase 1 of the development roadmap.
