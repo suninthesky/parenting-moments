@@ -14,34 +14,82 @@
   <div class="max-w-3xl mx-auto px-4">
     <header class="text-center mb-8">
       <h1 class="text-4xl font-bold text-gray-800 mb-4">Parenting Moments</h1>
+      
+      <!-- Score Display -->
+      <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+        <p class="text-xl font-semibold text-gray-700">Score: <span id="score">0</span></p>
+      </div>
+
+      <!-- Meters -->
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <h3 class="text-sm font-medium text-gray-600 mb-2">Child's Mood</h3>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div id="mood-meter" 
+                 class="h-full bg-green-500 transition-all duration-500" 
+                 style="width: 100%">
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <h3 class="text-sm font-medium text-gray-600 mb-2">Parent's Patience</h3>
+          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div id="patience-meter" 
+                 class="h-full bg-blue-500 transition-all duration-500" 
+                 style="width: 100%">
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="bg-blue-50 rounded-lg p-4 mb-6">
         <h2 class="text-xl font-semibold text-blue-800 mb-2">Child Development Stage: Toddler (2-3 years)</h2>
-        <p class="text-blue-600">At this age, children are developing independence and may test boundaries frequently.
-        </p>
+        <p class="text-blue-600">At this age, children are developing independence and may test boundaries frequently.</p>
       </div>
     </header>
 
     <main>
       <div id="scenario" class="card mb-6">
-        <h3 class="text-2xl font-semibold mb-4">Current Situation</h3>
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-2xl font-semibold">Current Situation</h3>
+          <!-- Timer -->
+          <div id="timer" 
+               class="text-2xl font-bold text-red-500 animate-pulse-slow"
+               hx-swap-oob="true">
+            10
+          </div>
+        </div>
+        
         <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6">
           Your toddler refuses to put on their shoes when you're running late for an appointment.
         </p>
-
+        
         <div class="space-y-3">
-          <button hx-post="/make-choice" hx-vals='{"value": 1}' hx-target="#outcome" class="btn-primary w-full text-left">
+          <button 
+              hx-post="/make-choice" 
+              hx-target="#outcome"
+              hx-vals='{"value": 1}'
+              class="btn-primary w-full text-left">
             Get down to their level and calmly explain why we need to wear shoes
           </button>
-          <button hx-post="/make-choice" hx-vals='{"value": 2}' hx-target="#outcome" class="btn-primary w-full text-left">
+          <button 
+              hx-post="/make-choice" 
+              hx-target="#outcome"
+              hx-vals='{"value": 2}'
+              class="btn-primary w-full text-left">
             Try to make it into a fun game
           </button>
-          <button hx-post="/make-choice" hx-vals='{"value": 3}' hx-target="#outcome" class="btn-primary w-full text-left">
+          <button 
+              hx-post="/make-choice" 
+              hx-target="#outcome"
+              hx-vals='{"value": 3}'
+              class="btn-primary w-full text-left">
             Put the shoes on for them while they resist
           </button>
         </div>
       </div>
 
-      <div id="outcome" class="card mb-6">
+      <div id="outcome" class="mb-6">
         <!-- Outcome will be displayed here -->
       </div>
 
@@ -52,6 +100,43 @@
       </div>
     </main>
   </div>
+
+  <script>
+    // Timer functionality
+    function startTimer(duration) {
+      let timeLeft = duration;
+      const timerElement = document.getElementById('timer');
+      
+      const timerId = setInterval(() => {
+        timerElement.textContent = timeLeft;
+        
+        if (--timeLeft < 0) {
+          clearInterval(timerId);
+          // Trigger timeout response
+          htmx.trigger('#scenario', 'timeoutReached');
+        }
+      }, 1000);
+
+      // Store timer ID for cleanup
+      document.querySelector('#scenario').dataset.timerId = timerId;
+    }
+
+    // Start timer when new scenario loads
+    htmx.on('htmx:afterSwap', (evt) => {
+      if (evt.detail.target.id === 'scenario') {
+        // Clear previous timer if exists
+        const oldTimerId = evt.detail.target.dataset.timerId;
+        if (oldTimerId) clearInterval(parseInt(oldTimerId));
+        
+        startTimer(10);
+      }
+    });
+
+    // Initialize timer on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      startTimer(10);
+    });
+  </script>
 </body>
 
 </html>

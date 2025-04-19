@@ -10,19 +10,22 @@ const scenarios = [
                 id: 1,
                 text: "Get down to their level and calmly explain why we need to wear shoes",
                 outcome: "Your child feels heard and understood. While it takes a few minutes, they cooperate with putting on their shoes.",
-                educationalNote: "Taking time to communicate respect for your child's feelings while maintaining boundaries helps build trust."
+                educationalNote: "Taking time to communicate respect for your child's feelings while maintaining boundaries helps build trust.",
+                impact: "positive"
             },
             {
                 id: 2,
                 text: "Try to make it into a fun game",
                 outcome: "Your child gets excited about the 'shoe game' and willingly participates.",
-                educationalNote: "Play is a powerful tool for getting cooperation from toddlers."
+                educationalNote: "Play is a powerful tool for getting cooperation from toddlers.",
+                impact: "positive"
             },
             {
                 id: 3,
                 text: "Put the shoes on for them while they resist",
                 outcome: "Your child becomes more upset and the struggle intensifies, making you even later.",
-                educationalNote: "Forcing physical compliance can damage trust and lead to more resistance in the future."
+                educationalNote: "Forcing physical compliance can damage trust and lead to more resistance in the future.",
+                impact: "negative"
             }
         ],
         tip: "Toddlers often seek independence and control. Giving them choices within acceptable boundaries can help reduce power struggles."

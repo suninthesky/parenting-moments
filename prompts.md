@@ -22,3 +22,12 @@ Build Phase 1 of the development roadmap.
 
 ## 8 (context `/htmx-version`)
 Update what we've built so far to use Tailwind CSS and Fastify for the server. Also update the Technical Implementation Notes in the README to reflect these choices as well as filling in the Server-Side Implementation Notes section.
+
+## 9  (context `/htmx-version`)
+Build phase 2 of the development roadmap in README.md. Also add nodemon (or similar best practice library) for auto reloading and running multiple commands during development. Update styles in server.js to use Tailwind if needed.
+
+## 10 (context `/htmx-version`)
+Resolve the "Method 'HEAD' already declared for route" FastifyError.
+
+## 11 (context `/htmx-version`)
+Use express instead of fastify for the server. Ensure requests and responses work with HTMX and its hx-post method sending JSON. Update dependencies accordingly.
