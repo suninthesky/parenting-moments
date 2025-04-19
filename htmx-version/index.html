@@ -26,9 +26,14 @@
         </div>
       </div>
 
+      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-4">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">Child Development Stage: Toddler (2-3 years)</h2>
+        <p class="text-blue-600">At this age, children are developing independence and may test boundaries frequently.</p>
+      </div>
+
       <!-- Enhanced Meters with Animations -->
-      <div class="grid grid-cols-2 gap-4 mb-6">
-        <div class="bg-white rounded-lg p-4 shadow-lg transform transition-all duration-300 hover:scale-105">
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="bg-white rounded-lg p-4 shadow-lg">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-medium text-gray-600">Child's Mood</h3>
             <span id="mood-emoji" class="text-2xl transition-all duration-300">😊</span>
@@ -40,7 +45,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-lg p-4 shadow-lg transform transition-all duration-300 hover:scale-105">
+        <div class="bg-white rounded-lg p-4 shadow-lg">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-medium text-gray-600">Parent's Patience</h3>
             <span id="patience-emoji" class="text-2xl transition-all duration-300">🧘</span>
@@ -52,11 +57,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-6 transform transition-all duration-300 hover:scale-105">
-        <h2 class="text-xl font-semibold text-blue-800 mb-2">Child Development Stage: Toddler (2-3 years)</h2>
-        <p class="text-blue-600">At this age, children are developing independence and may test boundaries frequently.</p>
       </div>
     </header>
 
@@ -84,7 +84,7 @@
               hx-post="/make-choice" 
               hx-target="#outcome"
               hx-vals='{"value": "1"}'
-              class="w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md transform transition-all duration-200 hover:scale-102 hover:shadow-lg active:scale-98 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              class="btn-primary w-full text-left">
             Get down to their level and calmly explain why we need to wear shoes
           </button>
           <button 
@@ -108,7 +108,7 @@
         <!-- Outcome will be displayed here -->
       </div>
 
-      <div class="bg-yellow-50/90 backdrop-blur-sm rounded-lg p-4 border-l-4 border-yellow-400 transform transition-all duration-300 hover:scale-105">
+      <div class="bg-yellow-50/90 backdrop-blur-sm rounded-lg p-4 border-l-4 border-yellow-400">
         <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
         <p class="text-yellow-700">Toddlers often seek independence and control. Giving them choices within acceptable
           boundaries can help reduce power struggles.</p>
