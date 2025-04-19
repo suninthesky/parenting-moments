@@ -8,6 +8,7 @@ const port = 3000;
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Current scenario tracking (in memory for Phase 1)
 let currentScenarioIndex = 0;
@@ -47,15 +48,15 @@ app.get('/next-scenario', (req, res) => {
     const scenario = scenarios[currentScenarioIndex];
     
     res.send(`
-        <h3>Current Situation</h3>
-        <p class="scenario-text">${scenario.situation}</p>
-        <div class="options">
+        <h3 class="text-2xl font-semibold mb-4">Current Situation</h3>
+        <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6">${scenario.situation}</p>
+        <div class="space-y-3">
             ${scenario.options.map(option => `
                 <button 
                     hx-post="/make-choice" 
                     hx-target="#outcome"
-                    class="option-button"
-                    value="${option.id}">
+                    hx-vals='{"value": ${option.id}}'
+                    class="btn-primary w-full text-left">
                     ${option.text}
                 </button>
             `).join('')}

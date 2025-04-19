@@ -19,3 +19,6 @@ Incorporate the "Educational Features" into the plan so the game can build paren
 
 ## 7
 Build Phase 1 of the development roadmap.
+
+## 8 (context `/htmx-version`)
+Update what we've built so far to use Tailwind CSS and Fastify for the server. Also update the Technical Implementation Notes in the README to reflect these choices as well as filling in the Server-Side Implementation Notes section.
