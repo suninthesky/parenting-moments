@@ -16,6 +16,7 @@ function startTimer(duration) {
     timerBar.className = 'h-full bg-green-500 transition-all duration-1000';
     timeoutNotice.classList.add('opacity-0');
     parentingTip.classList.add('opacity-0');
+    parentingTip.classList.add('h-0');
 
     const updateTimerVisuals = (time) => {
         const progress = (time / duration) * 100;
@@ -30,6 +31,7 @@ function startTimer(duration) {
 
         // Show parenting tip at halfway point
         if (progress <= 50 && parentingTip.classList.contains('opacity-0')) {
+            parentingTip.classList.remove('h-0');
             parentingTip.classList.remove('opacity-0');
             parentingTip.classList.add('opacity-100');
         }
@@ -68,6 +70,7 @@ function startTimer(duration) {
             // Show timeout notice
             timeoutNotice.classList.remove('opacity-0');
             timeoutNotice.classList.add('opacity-100');
+            timeoutNotice.classList.add('bg-red-600');
             
             // Start decreasing child's mood
             setInterval(updateChildStatus, 1000);

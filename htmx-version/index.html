@@ -16,16 +16,16 @@
     <header class="text-center mb-8">
       <h1 class="text-4xl font-bold text-gray-800 mb-4 transition-all hover:scale-105">Parenting Moments</h1>
 
-      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-6 transform transition-all duration-300 hover:scale-105">
+      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-6">
         <h2 class="text-xl font-semibold text-blue-800 mb-2">Child Development Stage: Toddler (2-3 years)</h2>
         <p class="text-blue-600">At this age, children are developing independence and may test boundaries frequently.</p>
       </div>
       
       <!-- Status Meters -->
       <div class="grid grid-cols-2 gap-4 mb-6">
-        <div class="bg-white rounded-lg p-4 shadow-lg transform transition-all duration-300 hover:scale-105">
+        <div class="bg-white rounded-lg p-4 shadow-lg">
           <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-medium text-gray-600">Child's Mood</h3>
+            <h3 class="text-sm font-medium text-gray-600">Child's Patience</h3>
             <span id="mood-emoji" class="text-2xl transition-all duration-300">😊</span>
           </div>
           <div class="h-3 bg-gray-200 rounded-full overflow-hidden">
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-lg p-4 shadow-lg transform transition-all duration-300 hover:scale-105">
+        <div class="bg-white rounded-lg p-4 shadow-lg">
           <div class="flex items-center justify-between mb-2">
             <h3 class="text-sm font-medium text-gray-600">Parent's Patience</h3>
             <span id="patience-emoji" class="text-2xl transition-all duration-300">🧘</span>
@@ -53,21 +53,17 @@
     <main>
       <div id="scenario" class="bg-white/90 backdrop-blur-md rounded-lg shadow-lg mb-6 transform transition-all duration-300">
         <!-- Timer Progress Bar -->
-        <div class="relative h-4 w-full rounded-t-lg overflow-hidden bg-gray-200">
+        <div class="relative h-4 w-full rounded-t-lg overflow-hidden">
           <div id="timer-bar" class="h-full bg-green-500 transition-all duration-1000" style="width: 100%"></div>
-          <div id="timeout-notice" class="text-red-600 absolute inset-0 flex items-center justify-center text-xs text-white font-medium opacity-0 transition-opacity duration-300">
+          <div id="timeout-notice" class="absolute inset-0 flex items-center justify-center text-xs text-white font-medium opacity-0 transition-opacity duration-300">
             Child's patience lowering...
           </div>
         </div>
         
         <div class="p-6">
-          <h3 class="text-2xl font-semibold mb-4">Current Situation</h3>
+          <h3 class="text-2xl font-semibold mb-4">Your toddler refuses to put on their shoes when you're running late for an appointment.</h3>
           
-          <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6 transform transition-all duration-300 hover:bg-blue-100">
-            Your toddler refuses to put on their shoes when you're running late for an appointment.
-          </p>
-          
-          <div class="space-y-3 mb-6">
+          <div class="space-y-3">
             <button 
                 hx-post="/make-choice" 
                 hx-target="#scenario"
@@ -92,9 +88,11 @@
           </div>
 
           <!-- Integrated Parenting Tip -->
-          <div id="parenting-tip" class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400 transform transition-all duration-500 opacity-0">
-            <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
-            <p class="text-yellow-700">Toddlers often seek independence and control. Giving them choices within acceptable boundaries can help reduce power struggles.</p>
+          <div id="parenting-tip" class="transform transition-all duration-500 opacity-0 h-0 overflow-hidden">
+            <div class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400 mt-6">
+              <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
+              <p class="text-yellow-700">Toddlers often seek independence and control. Giving them choices within acceptable boundaries can help reduce power struggles.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -103,8 +101,6 @@
 
   <!-- Audio elements -->
   <audio id="tickSound" src="/public/sounds/tick.mp3" preload="auto"></audio>
-  <audio id="successSound" src="/public/sounds/success.mp3" preload="auto"></audio>
-  <audio id="warningSound" src="/public/sounds/warning.mp3" preload="auto"></audio>
   <audio id="timeoutSound" src="/public/sounds/timeout.mp3" preload="auto"></audio>
 
   <!-- Game logic -->

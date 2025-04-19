@@ -111,21 +111,17 @@ app.get('/next-scenario', (req, res) => {
     const scenario = scenarios[gameState.currentScenarioIndex];
     
     res.send(`
-        <div class="relative h-4 w-full rounded-t-lg overflow-hidden bg-gray-200">
+        <div class="relative h-4 w-full rounded-t-lg overflow-hidden">
             <div id="timer-bar" class="h-full bg-green-500 transition-all duration-1000" style="width: 100%"></div>
-            <div id="timeout-notice" class="text-red-600 absolute inset-0 flex items-center justify-center text-xs text-white font-medium opacity-0 transition-opacity duration-300">
+            <div id="timeout-notice" class="absolute inset-0 flex items-center justify-center text-xs text-white font-medium opacity-0 transition-opacity duration-300">
                 Child's patience lowering...
             </div>
         </div>
         
         <div class="p-6">
-            <h3 class="text-2xl font-semibold mb-4">Current Situation</h3>
+            <h3 class="text-2xl font-semibold mb-4">${scenario.situation}</h3>
             
-            <p class="text-lg bg-blue-50 p-4 rounded-lg mb-6 transform transition-all duration-300 hover:bg-blue-100">
-                ${scenario.situation}
-            </p>
-            
-            <div class="space-y-3 mb-6">
+            <div class="space-y-3">
                 ${scenario.options.map(option => `
                     <button 
                         hx-post="/make-choice" 
@@ -137,9 +133,11 @@ app.get('/next-scenario', (req, res) => {
                 `).join('')}
             </div>
 
-            <div id="parenting-tip" class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400 transform transition-all duration-500 opacity-0">
-                <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
-                <p class="text-yellow-700">${scenario.tip}</p>
+            <div id="parenting-tip" class="transform transition-all duration-500 opacity-0 h-0 overflow-hidden">
+                <div class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400 mt-6">
+                    <h4 class="font-semibold text-yellow-800 mb-2">Parenting Tip:</h4>
+                    <p class="text-yellow-700">${scenario.tip}</p>
+                </div>
             </div>
         </div>
     `);
