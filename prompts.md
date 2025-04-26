@@ -52,3 +52,12 @@ You've introduced breaking changes, the initial scenario is not loaded - resolve
 
 ## 18 (context `/htmx-version`)
 The third scenario in scenarios.js is not consistent with the others an causing an error - update it. Also combine social, emotional and learning impact attributes into a single attribute about 'social and emotional learning'. Be sure to update the server and client files accordingly. Finally add several more scenarios.
+
+## 19 (context `/htmx-version`)
+Lets update the user journey. The landing/start page should be a mobile optimsed page with: 1) a short engaging title and tagline - focus on the value proposition for users; 2) a start button which takes the user to the first scenario; 3) after the final scenario the user should be presented with a result page summarising their choices and focusing on actionable guidance to improve their parenting skills. Update and add files as needed, and refactor, organise or remove uneccesary code. Explore saving state on the client if needed.
+
+## 20 (context `/htmx-version`)
+You've lost the child and parent status bars, as well as scenerio timer from the scenario component. Make sure to retain these features. Look at previous versions, and game.js - which you may want to remove and integrate elements into app.js. Also integrate the status and timer bars visually into the existing mobile optimised UI.
+
+## 21 (context `/htmx-version`)
+You've visually integrated the status and timer bars but they don't function as expected. For instance the child and parent bars don't change accordingly when an option is selected, nor does the timer bar reduce. In the browser console we are also seeing errors related to documnt.body and window.parentingApp being undefined as well as timerInterval being redeclared - we may need to wrap code in a dom ready function or similar best practice. Debug and resolve these issues and explain your choices.

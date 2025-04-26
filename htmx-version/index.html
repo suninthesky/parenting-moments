@@ -12,67 +12,32 @@
   <!-- Add PWA support -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#ffffff">
+  <script src="/public/js/app.js"></script>
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
-  <div class="max-w-lg mx-auto px-4 py-4 sm:py-8">
-    <header class="text-center mb-6">
-      <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Parenting Moments</h1>
-      
-      <!-- Status Meters -->
-      <div class="grid grid-cols-2 gap-3 mb-6">
-        <div class="bg-white rounded-lg p-3 shadow-lg">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-medium text-gray-600">Child's Mood</h3>
-            <span id="mood-emoji" class="text-xl sm:text-2xl">😊</span>
-          </div>
-          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div id="mood-meter" 
-                 class="h-full transition-all duration-500 ease-out"
-                 style="width: 100%; background: linear-gradient(90deg, #22c55e, #16a34a)">
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg p-3 shadow-lg">
-          <div class="flex items-center justify-between mb-2">
-            <h3 class="text-sm font-medium text-gray-600">Parent's Patience</h3>
-            <span id="patience-emoji" class="text-xl sm:text-2xl">🧘</span>
-          </div>
-          <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div id="patience-meter" 
-                 class="h-full transition-all duration-500 ease-out"
-                 style="width: 100%; background: linear-gradient(90deg, #3b82f6, #2563eb)">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-6">
-        <h2 class="text-lg sm:text-xl font-semibold text-blue-800 mb-2">Child Development Stage: <span id="age-stage">Toddler (2-3 years)</span></h2>
-        <p class="text-blue-600 text-sm sm:text-base" id="development-info">At this age, children are developing independence and may test boundaries frequently.</p>
-      </div>
-    </header>
-
-    <main>
-      <div id="scenario" 
-           class="bg-white/90 backdrop-blur-md rounded-lg shadow-lg mb-6"
-           hx-get="/initial-scenario"
-           hx-trigger="load">
-          <!-- Loading state -->
-          <div class="p-4 sm:p-6 text-center">
-              <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-              <p class="mt-2 text-gray-600">Loading scenario...</p>
-          </div>
-      </div>
-    </main>
-  </div>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen flex flex-col">
+  <main class="flex-1 flex flex-col justify-center items-center px-4">
+    <div class="w-full max-w-md mx-auto text-center">
+      <h1 class="text-3xl sm:text-4xl font-bold text-blue-700 mb-4">Parenting Moments</h1>
+      <p class="text-lg text-gray-700 mb-8">
+        Build your confidence and skills with real-life parenting scenarios. Make choices, see outcomes, and get expert guidance—one moment at a time.
+      </p>
+      <button
+        id="start-btn"
+        hx-get="/scenario/0"
+        hx-target="body"
+        hx-swap="outerHTML"
+        class="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-lg font-semibold shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-98"
+        onclick="window.parentingApp.clearProgress()"
+      >
+        Start
+      </button>
+    </div>
+  </main>
 
   <!-- Audio elements -->
   <audio id="tickSound" src="/public/sounds/tick.mp3" preload="auto"></audio>
   <audio id="timeoutSound" src="/public/sounds/timeout.mp3" preload="auto"></audio>
-
-  <!-- Game logic -->
-  <script src="/public/js/game.js"></script>
 </body>
 
 </html>
