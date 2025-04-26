@@ -1,4 +1,3 @@
-
 ## 1
 I want to build a immersive game where you deal with challenging parenting situations with a young child. You have to quickly make choices in real-time to respond to the childs social, emotional, and learning needs. You lose the game if these needs go unmet for too long. Can you first write the readme.md? Let's make it simple and build one step at a time. Don't code yet.
 
@@ -63,10 +62,16 @@ You've lost the child and parent status bars, as well as scenerio timer from the
 You've visually integrated the status and timer bars but they don't function as expected. For instance the child and parent bars don't change accordingly when an option is selected, nor does the timer bar reduce. In the browser console we are also seeing errors related to documnt.body and window.parentingApp being undefined as well as timerInterval being redeclared - we may need to wrap code in a dom ready function or similar best practice. Debug and resolve these issues and explain your choices.
 
 ## 22 (context `/htmx-version`)
+I suspect the app in htmx-version could work as a fully client-side app - refactor it to use Vue. Retain all current functionality and the user journey, but remove or refactor any uneccesary code or files and ensure an organised and well documented codebase. Bear in mind I want to deploy it without the need for a back-end server, though using free public APIs is fine. Also update the tests.
+
+## 23 (context `/htmx-version`)
 That looks broadly okay, but I think you forgot example config files, like package.json, vite.config.ts, and tailwind.config.js. Update the plan to include these.
 
-## 23 (context `/vue-version`)
+## 24 (context `/vue-version`)
 The CJS build of Vite's Node API is deprecated, update config files to resolve this.
 
-## 24
+## 25
 Add a README.md to outline the original concept and requirements, and the fact this was a vibe coding experiment. Integrate this prompts.md file into the readme to show the development process. Conclude the readme by briefly summarising the code, architecture and implementation in /htmx-version and /vue-version. Also explain that a demo of the /vue-version is served via GitHub Pages from the /docs folder.
+
+## 25 (context `/vue-version`)
+The parenting tip in the ScenarioPage component should only show after half of the timer has passed. Also the both the childs and parents patience bar should reduce when the timer ends. When this happens make sure to show a warning to hurry up because patience is lowering. When either patience bar is fully depleted proceed to the ResultPage and include a message explaining the user ran out of time and can try again.

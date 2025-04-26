@@ -4,6 +4,9 @@
       <div class="p-4">
         <h2 class="text-2xl font-bold text-blue-700 mb-4">Your Parenting Journey</h2>
         <StatusBars />
+        <div v-if="resultMessage" class="mb-4 p-3 bg-red-100 text-red-700 rounded">
+          {{ resultMessage }}
+        </div>
         <ol class="mb-4">
           <li v-for="(choice, idx) in choices" :key="idx" class="mb-3">
             <div class="font-semibold text-blue-800 mb-1">Scenario {{ idx + 1 }}:</div>
@@ -26,27 +29,17 @@
         </div>
         <button
           class="w-full mt-6 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-98"
-          @click="restart">Restart</button>
+          @click="restart"
+        >Restart</button>
       </div>
     </div>
   </main>
 </template>
 <script setup>
-import { computed } from 'vue';
 import { useGameStore } from '../store';
-import { scenarios } from '../data/scenarios';
-import { parentingStrategies as strategies } from '../data/strategies';
 import StatusBars from './StatusBars.vue';
+const props = defineProps({ resultMessage: String });
 const store = useGameStore();
-const choices = computed(() => store.choices.map((id, idx) => ({ id, idx })));
-const usedStrategies = computed(() => {
-  const stratSet = {};
-  store.choices.forEach((choiceId, idx) => {
-    const strat = scenarios[idx].options.find(o => o.id === choiceId).strategy;
-    stratSet[strat] = true;
-  });
-  return stratSet;
-});
 function restart() {
   store.reset();
   window.location.reload();
