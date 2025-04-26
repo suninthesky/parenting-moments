@@ -43,3 +43,12 @@ Almost there. Integrate the Parenting Tip into the card for the Current Situatio
 
 ## 15 (context `/vue-version`)
 Build phase 1 of the Development Roadmap from the README.md. Make the most of the capabilities of Phaser.js.
+
+## 16 (context `/htmx-version`)
+Build Phase 4 of the Development Roadmap from the README.md. Ensure code quality and refactor things needed. You can skip the tutorial and achievement system for now, and focus more on quality scenarios that build parenting capabilities informed by evidence-based guidance. Optimise the UI/UX for a mobile device.
+
+## 17 (context `/htmx-version`)
+You've introduced breaking changes, the initial scenario is not loaded - resolve this and ensure the user can successfully complete at least three scenarios in a row. To verify this write some automated tests - consider using Playwright for end-to-end tests (or another best practice tool but provide a reason if choosing something else).
+
+## 18 (context `/htmx-version`)
+The third scenario in scenarios.js is not consistent with the others an causing an error - update it. Also combine social, emotional and learning impact attributes into a single attribute about 'social and emotional learning'. Be sure to update the server and client files accordingly. Finally add several more scenarios.

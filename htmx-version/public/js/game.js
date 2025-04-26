@@ -73,7 +73,7 @@ function startTimer(duration) {
             timeoutNotice.classList.add('bg-red-600');
             
             // Start decreasing child's mood
-            setInterval(updateChildStatus, 1000);
+            setInterval(updateChildStatus, 100);
         }
     }, 1000);
 
