@@ -61,3 +61,9 @@ You've lost the child and parent status bars, as well as scenerio timer from the
 
 ## 21 (context `/htmx-version`)
 You've visually integrated the status and timer bars but they don't function as expected. For instance the child and parent bars don't change accordingly when an option is selected, nor does the timer bar reduce. In the browser console we are also seeing errors related to documnt.body and window.parentingApp being undefined as well as timerInterval being redeclared - we may need to wrap code in a dom ready function or similar best practice. Debug and resolve these issues and explain your choices.
+
+## 22 (context `/htmx-version`)
+That looks broadly okay, but I think you forgot example config files, like package.json, vite.config.ts, and tailwind.config.js. Update the plan to include these.
+
+## 23 (context `/vue-version`)
+The CJS build of Vite's Node API is deprecated, update config files to resolve this.

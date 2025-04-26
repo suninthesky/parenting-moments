@@ -1,28 +1,24 @@
 {
-  "name": "vue-version",
-  "private": true,
-  "version": "0.0.0",
+  "name": "parenting-moments",
   "type": "module",
+  "version": "1.0.0",
+  "description": "A fully client-side, mobile-optimized parenting scenario game built with Vue 3, Vite, and Tailwind CSS.",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "playwright test"
   },
   "dependencies": {
-    "@vueuse/core": "13.1.0",
-    "autoprefixer": "10.4.21",
-    "gsap": "3.12.7",
-    "phaser": "3.60.0",
-    "pinia": "3.0.2",
-    "postcss": "8.5.3",
-    "tailwindcss": "4.1.4",
-    "vue": "^3.5.13"
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.0",
     "@vitejs/plugin-vue": "^5.2.2",
-    "@vue/tsconfig": "^0.7.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.3.1",
-    "vue-tsc": "^2.2.8"
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.3",
+    "vite": "6.3.3"
   }
 }
