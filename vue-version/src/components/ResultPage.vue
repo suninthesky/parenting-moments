@@ -8,15 +8,15 @@
           {{ resultMessage }}
         </div>
         <ol class="mb-4">
-          <li v-for="(choice, idx) in choices" :key="idx" class="mb-3">
+          <li v-for="(choice, idx) in store.choices" :key="idx" class="mb-3">
             <div class="font-semibold text-blue-800 mb-1">Scenario {{ idx + 1 }}:</div>
             <div class="text-gray-800 mb-1">{{ scenarios[idx].situation }}</div>
-            <div class="text-green-700 mb-1">Your choice: {{scenarios[idx].options.find(o => o.id === choice.id).text
+            <div class="text-green-700 mb-1">Your choice: {{scenarios[idx].options.find(o => o.id === choice).text
               }}</div>
             <div class="text-blue-600 text-sm mb-1">{{scenarios[idx].options.find(o => o.id ===
-              choice.id).socialEmotionalLearning }}</div>
-            <div class="text-yellow-700 text-xs mb-1">Strategy: {{strategies[scenarios[idx].options.find(o => o.id ===
-              choice.id).strategy].description }}</div>
+              choice).socialEmotionalLearning }}</div>
+            <div class="text-yellow-700 text-xs mb-1">Strategy: {{parentingStrategies[scenarios[idx].options.find(o => o.id ===
+              choice).strategy].description }}</div>
           </li>
         </ol>
         <div class="mt-4">
@@ -37,6 +37,8 @@
 </template>
 <script setup>
 import { useGameStore } from '../store';
+import { scenarios } from '../data/scenarios';
+import { parentingStrategies } from '../data/strategies';
 import StatusBars from './StatusBars.vue';
 const props = defineProps({ resultMessage: String });
 const store = useGameStore();

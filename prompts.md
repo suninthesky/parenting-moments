@@ -78,3 +78,6 @@ The parenting tip in the ScenarioPage component should only show after half of t
 
 ## 26 (context `/vue-version`)
 When the timer runs out during a scenario (@ScenarioPage.vue) the options are no longer selectable - resolve this and make sure any changes to the patience bars are persisted to the next view (@OutcomePage.vue).
+
+## 27 (context `/vue-version`)
+Results are not shown on @ResultPage.vue - debug the issue and update the file to resolve the issue. Refactor as needed.
