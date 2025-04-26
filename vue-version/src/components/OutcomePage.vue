@@ -1,10 +1,10 @@
 <template>
-  <main class="flex-1 flex flex-col justify-center items-center px-2">
+  <main class="flex-1 flex flex-col items-center px-2">
     <div class="w-full max-w-md mx-auto bg-white/90 rounded-lg shadow-lg mt-4 mb-4">
       <div class="p-4">
         <h2 class="text-xl font-bold text-blue-700 mb-2">Outcome</h2>
         <StatusBars />
-        <p class="text-lg text-gray-800 mb-4">{{ option.outcome }}</p>
+        <p class="text-lg font-bold text-gray-800 mb-4">{{ option.outcome }}</p>
         <div class="bg-blue-50 p-4 rounded-lg mb-4">
           <h4 class="font-semibold text-blue-800 mb-2">Social & Emotional Learning</h4>
           <p class="text-blue-600 text-sm">{{ option.socialEmotionalLearning }}</p>

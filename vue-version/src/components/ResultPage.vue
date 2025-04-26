@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-1 flex flex-col justify-center items-center px-2">
+  <main class="flex-1 flex flex-col items-center px-2">
     <div class="w-full max-w-md mx-auto bg-white/90 rounded-lg shadow-lg mt-4 mb-4">
       <div class="p-4">
         <h2 class="text-2xl font-bold text-blue-700 mb-4">Your Parenting Journey</h2>

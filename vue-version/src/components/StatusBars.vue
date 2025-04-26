@@ -2,7 +2,7 @@
   <div class="flex flex-row gap-2 mb-4">
     <div class="flex-1">
       <div class="flex items-center justify-between mb-1">
-        <span class="text-xs text-gray-600">Child's Mood</span>
+        <span class="text-xs text-gray-600">Child's Patience</span>
         <span id="mood-emoji" class="text-lg">{{ moodEmoji }}</span>
       </div>
       <div class="h-2 bg-gray-200 rounded-full overflow-hidden">

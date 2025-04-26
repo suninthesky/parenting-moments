@@ -75,3 +75,6 @@ Add a README.md to outline the original concept and requirements, and the fact t
 
 ## 25 (context `/vue-version`)
 The parenting tip in the ScenarioPage component should only show after half of the timer has passed. Also the both the childs and parents patience bar should reduce when the timer ends. When this happens make sure to show a warning to hurry up because patience is lowering. When either patience bar is fully depleted proceed to the ResultPage and include a message explaining the user ran out of time and can try again.
+
+## 26 (context `/vue-version`)
+When the timer runs out during a scenario (@ScenarioPage.vue) the options are no longer selectable - resolve this and make sure any changes to the patience bars are persisted to the next view (@OutcomePage.vue).
