@@ -67,3 +67,6 @@ That looks broadly okay, but I think you forgot example config files, like packa
 
 ## 23 (context `/vue-version`)
 The CJS build of Vite's Node API is deprecated, update config files to resolve this.
+
+## 24
+Add a README.md to outline the original concept and requirements, and the fact this was a vibe coding experiment. Integrate this prompts.md file into the readme to show the development process. Conclude the readme by briefly summarising the code, architecture and implementation in /htmx-version and /vue-version. Also explain that a demo of the /vue-version is served via GitHub Pages from the /docs folder.
